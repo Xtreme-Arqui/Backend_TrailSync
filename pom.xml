@@ -11,8 +11,8 @@
 	<groupId>com.example</groupId>
 	<artifactId>Backend_TrailSync</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>Backend_Go2Climb_IoT</name>
-	<description>Backend_Go2Climb_IoT</description>
+	<name>Backend_TrailSync</name>
+	<description>Backend_TrailSync</description>
 	<url/>
 	<licenses>
 		<license/>
