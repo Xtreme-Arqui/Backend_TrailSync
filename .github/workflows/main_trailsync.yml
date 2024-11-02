@@ -57,3 +57,5 @@ jobs:
           app-name: 'TrailSync'
           slot-name: 'Production'
           package: 'java-app/*.jar'
+      - name: Build with Maven
+        run: mvn clean install -DskipTests
