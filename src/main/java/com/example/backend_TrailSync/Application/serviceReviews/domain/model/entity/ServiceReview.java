@@ -21,7 +21,6 @@ public class ServiceReview {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotNull
     @NotBlank
     private String date;
 

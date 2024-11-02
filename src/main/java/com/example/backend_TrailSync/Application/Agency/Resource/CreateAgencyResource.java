@@ -25,7 +25,7 @@ public class CreateAgencyResource {
     private Long phoneNumber;
     @NotBlank
     @NotNull
-    @Size(max = 500)
+    @Size(max = 5000)
     private String description;
     @NotBlank
     @NotNull
@@ -35,22 +35,18 @@ public class CreateAgencyResource {
     @NotBlank
     @NotNull
     private String photo;
-    @NotNull
+
     private int score;
 
     @NotBlank
-    @NotNull
     private String linkF;
 
     @NotBlank
-    @NotNull
     private String linkW;
 
     @NotBlank
-    @NotNull
     private String linkI;
 
     @NotBlank
-    @NotNull
     private String linkT;
 }

@@ -15,7 +15,6 @@ public class UpdateServiceReviewResource {
     @NotBlank
     private String comment;
 
-    @NotNull
     @NotBlank
     private String date;
 

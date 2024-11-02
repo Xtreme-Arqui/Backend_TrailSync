@@ -21,7 +21,7 @@ public class UpdateServiceResource {
     private String name;
     @NotNull
     @NotBlank
-    @Size(max = 500)
+    @Size(max = 5000)
 
     private String description;
     @NotNull

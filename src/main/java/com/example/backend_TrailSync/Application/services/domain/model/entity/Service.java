@@ -29,7 +29,7 @@ public class Service {
 
     @NotNull
     @NotBlank
-    @Size(max = 500)
+    @Size(max = 5000)
 
     private String description;
 
