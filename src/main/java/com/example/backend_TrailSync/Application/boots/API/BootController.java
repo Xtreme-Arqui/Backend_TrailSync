@@ -88,7 +88,7 @@ public class BootController {
                                    @RequestBody CreateBootResource resource) {
         return mapper.toResource(bootService.create(serviceId, touristId, agencyId, mapper.toModel(resource)));
     }
-    
+
     @Operation(summary = "Update a Boot", description = "Update a boot in database.")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Hired service updated",

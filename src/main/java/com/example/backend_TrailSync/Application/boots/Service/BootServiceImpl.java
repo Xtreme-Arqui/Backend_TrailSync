@@ -71,30 +71,33 @@ public class BootServiceImpl implements BootService {
     }
 
     @Override
-    public Boot create(Long serviceId, Long touristId,Long agencyId, Boot boot) {
+    public Boot create(Long serviceId, Long touristId, Long agencyId, Boot boot) {
         // Validar los datos de Boot
         Set<ConstraintViolation<Boot>> violations = validator.validate(boot);
         if (!violations.isEmpty())
             throw new ResourceValidationException("Boot", (Throwable) violations);
 
-        // Verificar que el servicio existe
+        // Verificar que el servicio, la agencia y el turista existan
         if (!serviceRepository.existsById(serviceId))
             throw new ResourceNotFoundException("Service", serviceId);
 
         if (!agencyRepository.existsById(agencyId))
             throw new ResourceNotFoundException("Agency", agencyId);
 
-        // Obtener el servicio existente
-        Optional<Service> serviceExisting = serviceRepository.findById(serviceId);
-        Optional<Agency> agencyExisting = agencyRepository.findById(agencyId);
-        // Verificar que el turista existe y asignar los datos
+        if (!touristRepository.existsById(touristId))
+            throw new ResourceNotFoundException("Tourist", touristId);
+
+        // Obtener entidades existentes
+        Service service = serviceRepository.findById(serviceId).orElseThrow(() -> new ResourceNotFoundException("Service", serviceId));
+        Agency agency = agencyRepository.findById(agencyId).orElseThrow(() -> new ResourceNotFoundException("Agency", agencyId));
         return touristRepository.findById(touristId).map(tourist -> {
-            boot.setService(serviceExisting.get());
+            boot.setService(service);
             boot.setTourist(tourist);
-            boot.setAgency(agencyExisting.get());
+            boot.setAgency(agency);
             return bootRepository.save(boot);
         }).orElseThrow(() -> new ResourceNotFoundException("Tourist", touristId));
     }
+
 
     @Override
     public Boot update(Long serviceId, Long touristId, Long bootId, Boot boot) {
