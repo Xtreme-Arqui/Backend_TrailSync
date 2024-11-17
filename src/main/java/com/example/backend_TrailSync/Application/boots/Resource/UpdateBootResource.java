@@ -1,4 +1,10 @@
 package com.example.backend_TrailSync.Application.boots.Resource;
+
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter
+@Setter
 public class UpdateBootResource {
     private Long id;
     private Long code;

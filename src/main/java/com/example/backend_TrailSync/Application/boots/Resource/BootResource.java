@@ -3,6 +3,11 @@ package com.example.backend_TrailSync.Application.boots.Resource;
 import com.example.backend_TrailSync.Application.Agency.Domain.Model.Agency;
 import com.example.backend_TrailSync.Application.services.domain.model.entity.Service;
 import com.example.backend_TrailSync.Application.tourists.domain.model.entity.Tourist;
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter
+@Setter
 public class BootResource {
     private Long id;
     private Long code;
