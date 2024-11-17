@@ -5,6 +5,7 @@ import com.example.backend_TrailSync.Application.boots.Mapping.BootMapper;
 import com.example.backend_TrailSync.Application.boots.Resource.BootResource;
 import com.example.backend_TrailSync.Application.boots.Resource.CreateBootResource;
 import com.example.backend_TrailSync.Application.boots.Resource.UpdateBootResource;
+import com.example.backend_TrailSync.Application.hiredServices.resource.HiredServiceResource;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
@@ -77,6 +78,11 @@ public class BootController {
     }
 
     @Operation(summary = "Create a Boot", description = "Create a boot by serviceId and touristId in database.")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Boot created",
+                    content = { @Content(mediaType = "application/json",
+                            schema = @Schema(implementation = BootResource.class))})
+    })
     @PostMapping("touristId={touristId}")
     public BootResource createBoot(@PathVariable Long serviceId, @PathVariable Long touristId,
                                    @RequestBody CreateBootResource resource) {
