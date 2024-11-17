@@ -90,6 +90,11 @@ public class BootController {
     }
 
     @Operation(summary = "Update a Boot", description = "Update a boot in database.")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Hired service updated",
+                    content = { @Content(mediaType = "application/json",
+                            schema = @Schema(implementation = UpdateBootResource.class))})
+    })
     @PutMapping("touristId={touristId}/{bootId}")
     public BootResource updateBoot(@PathVariable Long bootId, @PathVariable Long touristId,
                                    @PathVariable Long serviceId, @RequestBody UpdateBootResource resource) {
