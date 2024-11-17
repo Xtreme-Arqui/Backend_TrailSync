@@ -1,5 +1,6 @@
 package com.example.backend_TrailSync.Application.boots.Domain.Model;
 
+import com.example.backend_TrailSync.Application.Agency.Domain.Model.Agency;
 import com.example.backend_TrailSync.Application.services.domain.model.entity.Service;
 import com.example.backend_TrailSync.Application.tourists.domain.model.entity.Tourist;
 import jakarta.persistence.*;
@@ -42,4 +43,8 @@ public class Boot {
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "service_id", nullable = false)
     private Service service;
+
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "agency_id", nullable = false)
+    private Agency agency;
 }

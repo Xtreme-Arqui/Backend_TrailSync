@@ -1,5 +1,7 @@
 package com.example.backend_TrailSync.Application.boots.Service;
 
+import com.example.backend_TrailSync.Application.Agency.Domain.Model.Agency;
+import com.example.backend_TrailSync.Application.Agency.Domain.Persistence.AgencyRepository;
 import com.example.backend_TrailSync.Application.boots.Domain.Model.Boot;
 import com.example.backend_TrailSync.Application.boots.Domain.Persistence.BootRepository;
 import com.example.backend_TrailSync.Application.boots.Domain.Service.BootService;
@@ -23,15 +25,17 @@ public class BootServiceImpl implements BootService {
     private final BootRepository bootRepository;
 
     private final ServiceRepository serviceRepository;
+    private final AgencyRepository agencyRepository;
 
     private final TouristRepository touristRepository;
 
     private final Validator validator;
 
-    public BootServiceImpl(BootRepository bootRepository, ServiceRepository serviceRepository, TouristRepository touristRepository, Validator validator) {
+    public BootServiceImpl(BootRepository bootRepository, ServiceRepository serviceRepository, TouristRepository touristRepository, Validator validator,AgencyRepository agencyRepository) {
         this.bootRepository = bootRepository;
         this.serviceRepository = serviceRepository;
         this.touristRepository = touristRepository;
+        this.agencyRepository=agencyRepository;
         this.validator = validator;
     }
 
@@ -67,7 +71,7 @@ public class BootServiceImpl implements BootService {
     }
 
     @Override
-    public Boot create(Long serviceId, Long touristId, Boot boot) {
+    public Boot create(Long serviceId, Long touristId,Long agencyId, Boot boot) {
         // Validar los datos de Boot
         Set<ConstraintViolation<Boot>> violations = validator.validate(boot);
         if (!violations.isEmpty())
@@ -77,13 +81,17 @@ public class BootServiceImpl implements BootService {
         if (!serviceRepository.existsById(serviceId))
             throw new ResourceNotFoundException("Service", serviceId);
 
+        if (!agencyRepository.existsById(agencyId))
+            throw new ResourceNotFoundException("Agency", agencyId);
+
         // Obtener el servicio existente
         Optional<Service> serviceExisting = serviceRepository.findById(serviceId);
-
+        Optional<Agency> agencyExisting = agencyRepository.findById(agencyId);
         // Verificar que el turista existe y asignar los datos
         return touristRepository.findById(touristId).map(tourist -> {
             boot.setService(serviceExisting.get());
             boot.setTourist(tourist);
+            boot.setAgency(agencyExisting.get());
             return bootRepository.save(boot);
         }).orElseThrow(() -> new ResourceNotFoundException("Tourist", touristId));
     }

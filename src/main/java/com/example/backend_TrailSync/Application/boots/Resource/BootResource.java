@@ -1,5 +1,6 @@
 package com.example.backend_TrailSync.Application.boots.Resource;
 
+import com.example.backend_TrailSync.Application.Agency.Domain.Model.Agency;
 import com.example.backend_TrailSync.Application.services.domain.model.entity.Service;
 import com.example.backend_TrailSync.Application.tourists.domain.model.entity.Tourist;
 public class BootResource {
@@ -15,4 +16,5 @@ public class BootResource {
     //Relationships
     private Tourist tourist;
     private Service service;
+    private Agency agency;
 }

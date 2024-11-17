@@ -13,7 +13,7 @@ public interface BootService {
     Boot getByState(String state);
     Boot getByLongitudeAndLatitude(Double longitude, Double latitude);
     Boot getByDistance(Double distance);
-    Boot create(Long serviceId, Long touristId, Boot BootService);
+    Boot create(Long serviceId, Long touristId, Long agencyId,Boot BootService);
     Boot update(Long serviceId, Long touristId, Long hiredServiceId, Boot BootService);
     ResponseEntity<?> delete(Long serviceId, Long touristId, Long bootId);
 

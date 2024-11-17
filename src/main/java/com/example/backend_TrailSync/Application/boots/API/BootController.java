@@ -77,18 +77,18 @@ public class BootController {
         return mapper.toResource(bootService.getByDistance(distance));
     }
 
-    @Operation(summary = "Create a Boot", description = "Create a boot by serviceId and touristId in database.")
+    @Operation(summary = "Create a Boot", description = "Create a boot by serviceId, touristId, and agencyId in the database.")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Boot created",
                     content = { @Content(mediaType = "application/json",
                             schema = @Schema(implementation = BootResource.class))})
     })
-    @PostMapping("touristId={touristId}")
-    public BootResource createBoot(@PathVariable Long serviceId, @PathVariable Long touristId,
+    @PostMapping("/serviceId={serviceId}/touristId={touristId}/agencyId={agencyId}")
+    public BootResource createBoot(@PathVariable Long serviceId, @PathVariable Long touristId, @PathVariable Long agencyId,
                                    @RequestBody CreateBootResource resource) {
-        return mapper.toResource(bootService.create(serviceId, touristId, mapper.toModel(resource)));
+        return mapper.toResource(bootService.create(serviceId, touristId, agencyId, mapper.toModel(resource)));
     }
-
+    
     @Operation(summary = "Update a Boot", description = "Update a boot in database.")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Hired service updated",
