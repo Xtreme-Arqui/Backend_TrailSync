@@ -22,19 +22,19 @@ public class Boot {
 
     @NotNull
     private Long code;
-    @NotBlank
+
     private String state;
-    @NotNull
+
     private Integer batery;
-    @NotNull
+
     private Long steps;
-    @NotNull
+
     private Double latitude;
-    @NotNull
+
     private Double longitude;
-    @NotNull
+
     private Double distance;
-    @NotNull
+
     private Long heartRate;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
