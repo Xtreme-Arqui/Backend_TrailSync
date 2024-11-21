@@ -29,6 +29,7 @@ public class Boot {
 
     private Long steps;
 
+
     private Double latitude;
 
     private Double longitude;
@@ -36,6 +37,7 @@ public class Boot {
     private Double distance;
 
     private Long heartRate;
+    private Float temperature;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "tourist_id", nullable = false)

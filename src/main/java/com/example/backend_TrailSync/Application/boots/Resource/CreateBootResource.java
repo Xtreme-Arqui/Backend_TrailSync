@@ -14,4 +14,5 @@ public class CreateBootResource {
     private Double longitude;
     private Double distance;
     private Long heartRate;
+    private Float temperature;
 }

@@ -18,6 +18,7 @@ public class BootResource {
     private Double longitude;
     private Double distance;
     private Long heartRate;
+    private Float temperature;
     //Relationships
     private Tourist tourist;
     private Service service;

@@ -123,6 +123,7 @@ public class BootServiceImpl implements BootService {
                         .withLongitude(boot.getLongitude())
                         .withDistance(boot.getDistance())
                         .withHeartRate(boot.getHeartRate())
+                        .withTemperature(boot.getTemperature())
                 )
         ).orElseThrow(() -> new ResourceNotFoundException("Boot", bootId));
     }

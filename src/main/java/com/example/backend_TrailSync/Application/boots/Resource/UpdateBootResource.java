@@ -15,4 +15,5 @@ public class UpdateBootResource {
     private Double longitude;
     private Double distance;
     private Long heartRate;
+    private Float temperature;
 }
