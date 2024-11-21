@@ -66,8 +66,8 @@ public class BootController {
     }
 
     @Operation(summary = "Get Boot by Latitude and Longitude", description = "Get a boot by its coordinates.")
-    @GetMapping("/location")
-    public BootResource getByLongitudeAndLatitude(@RequestParam Double longitude, @RequestParam Double latitude) {
+    @GetMapping("/location/{longitude}/{latitude}")
+    public BootResource getByLongitudeAndLatitude(@PathVariable  Double longitude, @PathVariable  Double latitude) {
         return mapper.toResource(bootService.getByLongitudeAndLatitude(longitude, latitude));
     }
 
@@ -95,14 +95,14 @@ public class BootController {
                     content = { @Content(mediaType = "application/json",
                             schema = @Schema(implementation = UpdateBootResource.class))})
     })
-    @PutMapping("touristId={touristId}/{bootId}")
+    @PutMapping("touristId={touristId}/serviceId={serviceId}/bootId={bootId}")
     public BootResource updateBoot(@PathVariable Long bootId, @PathVariable Long touristId,
                                    @PathVariable Long serviceId, @RequestBody UpdateBootResource resource) {
         return mapper.toResource(bootService.update(serviceId, touristId, bootId, mapper.toModel(resource)));
     }
 
     @Operation(summary = "Delete a Boot", description = "Delete a boot from database.")
-    @DeleteMapping("touristId={touristId}/{bootId}")
+    @DeleteMapping("touristId={touristId}/service/{serviceId}/{bootId}")
     public ResponseEntity<?> deleteBoot(@PathVariable Long bootId, @PathVariable Long touristId,
                                         @PathVariable Long serviceId) {
         return bootService.delete(serviceId, touristId, bootId);
